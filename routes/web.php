@@ -16,13 +16,13 @@
     |
     */
 
-    Route::get('/', function () {
+    Route::get('/', static function () {
         $post = Post::all();
 
         return view('welcome', ['post' => $post]);
     });
-    Route::get('/post/{slug}', function($slug) {
-    $post = \App\Models\Post::where('slug',$slug)->firstOrFail();
+    Route::get('/post/{slug}', static function($slug) {
+    $post = Post::where('slug',$slug)->firstOrFail();
     return view('detail',['post' => $post]);
 })->name('detail');
 
@@ -30,7 +30,7 @@
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/create', [HomeController::class, 'create'])->name('create');
-    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], static function () {
         Lfm::routes();
     });
     Route::post('/create', [HomeController::class, 'store'])->name('store');

@@ -12,6 +12,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Slug</th>
                     <th scope="col">Desc</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -24,6 +25,9 @@
                     <td>{{ $data->title }}</td>
                     <td>{{ $data->slug }}</td>
                     <td>{!! Str::limit( strip_tags( $data->desc ), 50 ) !!}</td>
+                    <td>
+                        <a href="{{ route('detail', $data->slug) }}" class="btn btn-primary btn-sm">View</a>
+                    </td>
                   </tr>
                   @endforeach
 
